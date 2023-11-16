@@ -1,0 +1,19 @@
+#include <Stepper.h>
+
+const int stepsPerRevolution = 2048;  // 한바퀴(360도)를 위한 스텝 수
+Stepper myStepper(stepsPerRevolution, 11, 9, 10, 8);
+const int stepCount = stepsPerRevolution / 4;  // 90도 회전을 위한 스텝 수
+
+void setup() {
+  myStepper.setSpeed(16);  // 모터 속도 설정
+}
+
+void loop() {
+  // 시계 반대 방향으로 90도 회전
+  myStepper.step(stepCount);
+  delay(1000);  // 일시 정지
+
+  // 시계 방향으로 90도 회전 (음수를 사용하여 반대 방향으로 회전)
+  myStepper.step(-stepCount);
+  delay(1000);  // 일시 정지
+}
